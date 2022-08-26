@@ -11,6 +11,7 @@ public class customPaintingsMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		//irgendwas
 
 
 	}
