@@ -10,6 +10,12 @@ import java.nio.file.StandardCopyOption;
 
 public class PaintingsModMethods {
 
+    public static void main(String[] args) {
+        String src = "src/main/java/net/kong/neky/customPaintings/testPaintings";
+        ImageType[] img = PaintingsModMethods.getImagesFromPath(src);
+
+    }
+    /*
     public static void copyFiles() throws IOException {
         String src = "src/main/java/net/kong/neky/customPaintings/testPaintings";
         String dst = "src/main/resources/assets/customPaintings/textures/painting";
@@ -25,13 +31,13 @@ public class PaintingsModMethods {
             x++;
         }
     }
+    */
 
     public static ImageType[] getImagesFromPath(String path) {
         File directory = new File(path);
         String[] directoryList = directory.list();
         int length = directoryList.length;
         int count = 0;
-        BufferedImage[] images = new BufferedImage[length];
         ImageType[] re = new ImageType[length];
 
         for (File file : directory.listFiles()) {
@@ -39,7 +45,8 @@ public class PaintingsModMethods {
             try {
                 re[count] = new ImageType(ImageIO.read(file),path,list[0],list[1],ImageIO.read(file).getWidth(),ImageIO.read(file).getHeight());
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println("Error has been caught!");
+                e.printStackTrace();
             }
             count++;
         }
@@ -47,7 +54,7 @@ public class PaintingsModMethods {
         return re;
     }
 
-
+/*
     public static BufferedImage scale(BufferedImage bufferedImage, int width, int height){
         BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         int x, y;
@@ -65,6 +72,6 @@ public class PaintingsModMethods {
         }
         return img;
     }
-
+*/
 
 }

@@ -13,18 +13,23 @@ public class ModPaintings {
 
     static int block = 16;
     static String src = "src/main/java/net/kong/neky/customPaintings/testPaintings";
-    static ImageType[] img;
+    static ImageType[] img = PaintingsModMethods.getImagesFromPath(src);
+
+
+
+
+
     public ModPaintings(){
+
     }
-/*
-    public static void PaintingMotive() {
-        img = PaintingsModMethods.getImagesFromPath(src);
+
+    private static void PaintingMotive() {
         for (ImageType imgt : img) {
             registerPainting(imgt.name, new PaintingMotive(block * 3, block * 2));
+
         }
     }
 
- */
 
 /*
     public static void PaintingMotive() {
