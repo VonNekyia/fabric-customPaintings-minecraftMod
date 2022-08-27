@@ -13,16 +13,20 @@ public class PaintingsModMethods {
     public static void copyFiles() throws IOException {
         String src = "src/main/java/net/kong/neky/customPaintings/testPaintings";
         String dst = "src/main/resources/assets/customPaintings/textures/painting";
-        ImageType[] images = getImageFromPath(src);
+        ImageType[] images = getImagesFromPath(src);
         int x = 0;
 
         for (ImageType img : images) {
-            ImageIO.write(img.bufferedImage ,img.name,new File(dst));
+            try {
+                ImageIO.write(img.bufferedImage ,img.name,new File(dst));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             x++;
         }
     }
 
-    public static ImageType[] getImageFromPath(String path) throws IOException {
+    public static ImageType[] getImagesFromPath(String path) {
         File directory = new File(path);
         String[] directoryList = directory.list();
         int length = directoryList.length;
@@ -31,12 +35,18 @@ public class PaintingsModMethods {
         ImageType[] re = new ImageType[length];
 
         for (File file : directory.listFiles()) {
-            re[count] = new ImageType(ImageIO.read(file),path,file.getName(),file.getName(),ImageIO.read(file).getWidth(),ImageIO.read(file).getHeight());
+            String[] list = file.getName().split("\\.");
+            try {
+                re[count] = new ImageType(ImageIO.read(file),path,list[0],list[1],ImageIO.read(file).getWidth(),ImageIO.read(file).getHeight());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             count++;
         }
 
         return re;
     }
+
 
     public static BufferedImage scale(BufferedImage bufferedImage, int width, int height){
         BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
