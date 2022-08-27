@@ -15,7 +15,7 @@ public class ModPainting {
     String src = "src/main/java/net/kong/neky/customPaintings/testPaintings";
     ImageType[] picture = PaintingsModMethods.getImageFromPath(src);
     PaintingMotive[] motives = new PaintingMotive[picture.length];
-
+    int counter = 0;
 
 
     public static final PaintingMotive AZADI_TOWER = registerPainting("azadi_tower", new PaintingMotive(block * 3, block * 2));
@@ -26,7 +26,7 @@ public class ModPainting {
     public ModPainting() throws IOException {
 
         for (PaintingMotive mot : motives) {
-            mot = registerPainting();
+
         }
 
     }
