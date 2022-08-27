@@ -1,6 +1,7 @@
 package net.kong.neky.customPaintings;
 
 import net.fabricmc.api.ModInitializer;
+import net.kong.neky.customPaintings.painting.ModPainting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +12,9 @@ public class customPaintingsMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		//irgendwas
+
+
+		ModPainting.registerPaintings();
 
 
 	}
