@@ -8,6 +8,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class ModPainting {
 
@@ -15,7 +18,7 @@ public class ModPainting {
     String src = "src/main/java/net/kong/neky/customPaintings/testPaintings";
     ImageType[] picture = PaintingsModMethods.getImageFromPath(src);
     PaintingMotive[] motives = new PaintingMotive[picture.length];
-    int counter = 0;
+    int count = 0;
 
 
     public static final PaintingMotive AZADI_TOWER = registerPainting("azadi_tower", new PaintingMotive(block * 3, block * 2));
@@ -25,11 +28,13 @@ public class ModPainting {
 
     public ModPainting() throws IOException {
 
-        for (PaintingMotive mot : motives) {
-
+        for (ImageType img : picture) {
+            motives[count] = registerPainting(img.name, new PaintingMotive(img.width, img.height));
+            count++;
         }
 
     }
+
 
 
     private static PaintingMotive registerPainting(String name, PaintingMotive paintingMotive) {
